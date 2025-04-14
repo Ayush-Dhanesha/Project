@@ -21,14 +21,18 @@ function App() {
     wsRef.current = socket;
 
     socket.onopen = () => {
-      wsRef.current.send(JSON.stringify({
+      socket.send(JSON.stringify({
         type: "join",
         payload: {
           roomId: "red"
         }
       
       })
+
     )};
+    return () => {  
+      socket.close();
+    }
     
   });
 
